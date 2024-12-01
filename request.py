@@ -3,11 +3,18 @@ import json
 
 
 class Request:
-    def __init__(self, url='https://petstore.swagger.io/v2/', path=''):
+    def __init__(self, url='https://petstore.swagger.io/v2', path=''):
         self.url = url
         self.path = path
-        self.headers = {'accept': 'application/json', 'Content-Type': 'application/json'}
-        self.method = {'get': requests.get, 'post': requests.post}
+        self.headers = {
+            'accept': 'application/json', 
+            'Content-Type': 'application/json'
+            }
+        self.method = {
+            'get': requests.get, 
+            'post': requests.post,
+            'delete': requests.delete
+            }
         self.data = 0
         self.response = 0
 
@@ -25,3 +32,4 @@ class Request:
         params = {'url': full_url, 'headers': self.headers, 'data': self.data}
         self.response = self.method[method](**params)
         return self.response
+    
